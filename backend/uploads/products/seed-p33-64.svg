@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <rect width="800" height="1000" fill="#D8D2C4"/>
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#1A1A1A" stroke-opacity="0.25" stroke-width="1.5"/>
+  <text x="400" y="470" font-family="Georgia, serif" font-size="34" fill="#1A1A1A" text-anchor="middle" letter-spacing="6">FELT &amp; FORM</text>
+  <text x="400" y="520" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#1A1A1A" fill-opacity="0.85" text-anchor="middle" letter-spacing="2">UTILITY VEST</text>
+</svg>
