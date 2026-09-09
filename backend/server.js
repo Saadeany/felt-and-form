@@ -25,6 +25,8 @@ const emailLogRoutes     = require("./routes/emailLogRoutes");
 const contactRoutes      = require("./routes/contactRoutes");
 
 const app = express();
+app.set("trust proxy", 1);
+
 
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
