@@ -26,6 +26,14 @@ const contactRoutes      = require("./routes/contactRoutes");
 
 const app = express();
 
+// ── IMPORTANT for Docker/VPS deployments ──────────────────────────────────
+// The app sits behind the frontend's nginx container (or a host-level
+// reverse proxy). Without `trust proxy`, Express sees every request as
+// coming from the proxy's internal IP, which breaks express-rate-limit
+// (everyone shares one bucket) and any IP-based logic. `1` means "trust the
+// first hop" — correct for a single reverse proxy in front of this app.
+app.set("trust proxy", 1);
+
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
 
@@ -42,11 +50,6 @@ app.use(express.urlencoded({ extended: true, limit: "2mb" }));
 app.use(sanitizeInput);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-
-// ── SEO: sitemap.xml + robots.txt ──────────────────────────────────────────
-const { getSitemap, getRobots } = require("./controllers/sitemapController");
-app.get("/sitemap.xml", getSitemap);
-app.get("/robots.txt",  getRobots);
 app.get("/api/health", (req, res) => res.json({ status: "ok", timestamp: new Date().toISOString() }));
 
 app.use("/api/auth",          authRoutes);
