@@ -59,18 +59,18 @@ const CheckoutPage = () => {
     return null;
   }
 
-  const Field = ({ label, name, type = "text", required = true }) => (
-    <div>
-      <label className="eyebrow mb-1 block">{label}</label>
-      <input
-        type={type}
-        required={required}
-        value={form[name]}
-        onChange={(e) => update(name, e.target.value)}
-        className="input-field"
-      />
-    </div>
-  );
+  const Field = ({ label, name, type = "text", required = true, form, update }) => (
+  <div>
+    <label className="eyebrow mb-1 block">{label}</label>
+    <input
+      type={type}
+      required={required}
+      value={form[name]}
+      onChange={(e) => update(name, e.target.value)}
+      className="input-field"
+    />
+  </div>
+);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
@@ -82,11 +82,42 @@ const CheckoutPage = () => {
             <div className="border border-ink/10 p-6">
               <h2 className="font-display text-xl mb-5">Shipping Information</h2>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field label="Full Name" name="shipping_full_name" />
-                <Field label="Phone" name="shipping_phone" type="tel" />
-                <Field label="Email" name="shipping_email" type="email" />
-                <Field label="Country" name="shipping_country" />
-                <Field label="City" name="shipping_city" />
+                <Field
+                  label="Full Name"
+                  name="shipping_full_name"
+                  form={form}
+                  update={update}
+                />
+
+                <Field
+                  label="Phone"
+                  name="shipping_phone"
+                  type="tel"
+                  form={form}
+                  update={update}
+                />
+
+                <Field
+                  label="Email"
+                  name="shipping_email"
+                  type="email"
+                  form={form}
+                  update={update}
+                />
+
+                <Field
+                  label="Country"
+                  name="shipping_country"
+                  form={form}
+                  update={update}
+                />
+
+                <Field
+                  label="City"
+                  name="shipping_city"
+                  form={form}
+                  update={update}
+                />
                 <div className="sm:col-span-2">
                   <label className="eyebrow mb-1 block">Address</label>
                   <input
