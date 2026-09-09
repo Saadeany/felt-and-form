@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink:      "#0C2340",
-        charcoal: "#1A3A5C",
-        stone:    "#7A9CB8",
-        beige:    "#B8D4E8",
-        cream:    "#E8F2F8",
-        paper:    "#F4F9FC",
+        ink: "#1A1A1A",
+        charcoal: "#2B2B2B",
+        stone: "#A89F8E",
+        beige: "#D8C9AE",
+        cream: "#F4F1EA",
+        paper: "#FAF8F4",
       },
       fontFamily: {
         display: ["'Fraunces'", "Georgia", "serif"],

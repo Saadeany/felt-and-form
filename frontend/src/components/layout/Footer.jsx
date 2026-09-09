@@ -68,6 +68,7 @@ const Footer = () => {
               { label: "About Us", to: "/about" },
               { label: "Contact", to: "/contact" },
               { label: "FAQ", to: "/faq" },
+              { label: "Size Guide", to: "/size-guide" },
               { label: "Privacy Policy", to: "/privacy" },
               { label: "Terms & Conditions", to: "/terms" },
             ].map((l) => (

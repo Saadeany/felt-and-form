@@ -7,8 +7,13 @@ import ProductCard from "../components/product/ProductCard";
 import QuickViewModal from "../components/product/QuickViewModal";
 import ProductFilters from "../components/product/ProductFilters";
 import Loader from "../components/common/Loader";
+import useSEO from "../utils/useSEO";
 
 const ShopPage = () => {
+  useSEO({
+    title: "Shop All",
+    description: "Browse the full Felt & Form collection — heavyweight basics, hoodies, T-shirts, pants and accessories. Designed in Cairo.",
+  });
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});

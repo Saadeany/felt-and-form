@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import useSEO from "../utils/useSEO";
 import { submitContact } from "../api/orders";
 
 const ContactPage = () => {
+  useSEO({
+    title: "Contact Us",
+    description: "Get in touch with Felt & Form. Find our Cairo store location, phone, email, and opening hours.",
+  });
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);

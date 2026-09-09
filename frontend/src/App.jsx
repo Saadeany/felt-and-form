@@ -19,6 +19,7 @@ import AboutPage        from "./pages/AboutPage";
 import ContactPage      from "./pages/ContactPage";
 import FAQPage          from "./pages/FAQPage";
 import PrivacyPage      from "./pages/PrivacyPage";
+import SizeGuidePage from "./pages/SizeGuidePage";
 import TermsPage        from "./pages/TermsPage";
 import NotFoundPage     from "./pages/NotFoundPage";
 
@@ -66,6 +67,7 @@ const App = () => (
       <Route path="/contact"       element={<ContactPage />}      />
       <Route path="/faq"           element={<FAQPage />}          />
       <Route path="/privacy"       element={<PrivacyPage />}      />
+      <Route path="/size-guide" element={<SizeGuidePage />} />
       <Route path="/terms"         element={<TermsPage />}        />
       <Route path="/login"         element={<LoginPage />}        />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />

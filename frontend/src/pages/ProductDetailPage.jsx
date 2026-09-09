@@ -12,6 +12,7 @@ import { formatPrice, getFinalPrice } from "../utils/format";
 import RatingStars from "../components/common/RatingStars";
 import ProductCard from "../components/product/ProductCard";
 import Loader from "../components/common/Loader";
+import useSEO from "../utils/useSEO";
 
 const ProductDetailPage = () => {
   const { slug } = useParams();
@@ -49,15 +50,43 @@ const ProductDetailPage = () => {
       .finally(() => setLoading(false));
   }, [slug]);
 
-  if (loading) return <Loader label="Loading product" />;
-  if (!data?.product) return (
+const product = data?.product;
+const similar_products = data?.similar_products || [];
+
+const seoImage =
+  product?.images?.find(i => i.is_primary)?.image_url ||
+  product?.images?.[0]?.image_url;
+
+useSEO({
+  title: product?.name,
+  description: product?.description
+    ? product.description.slice(0, 155) +
+      (product.description.length > 155 ? "…" : "")
+    : undefined,
+  image: seoImage
+    ? `${window.location.origin}${seoImage}`
+    : undefined,
+  url: window.location.href,
+  type: "product",
+  price: product
+    ? parseFloat(product.price) *
+      (1 - parseFloat(product.discount || 0) / 100)
+    : undefined,
+});
+
+if (loading) return <Loader label="Loading product" />;
+
+if (!product)
+  return (
     <div className="py-32 text-center">
       <p className="font-display text-2xl">Product not found.</p>
-      <Link to="/shop" className="mt-4 block text-sm underline">Back to shop</Link>
+      <Link to="/shop" className="mt-4 block text-sm underline">
+        Back to shop
+      </Link>
     </div>
   );
 
-  const { product, similar_products = [] } = data;
+
   const finalPrice = getFinalPrice(product.price, product.discount);
   const hasDiscount = parseFloat(product.discount) > 0;
   const images = product.images || [];
@@ -200,7 +229,14 @@ const ProductDetailPage = () => {
                   );
                 })}
               </div>
-              <p className="text-xs text-charcoal/50 mt-2">Crossed-out sizes are currently out of stock.</p>
+              <div className="flex items-center justify-between mt-2">
+                <p className="text-xs text-charcoal/50">Crossed-out sizes are currently out of stock.</p>
+                <a href="/size-guide" target="_blank" rel="noopener noreferrer"
+                  className="text-xs text-charcoal/60 underline hover:text-ink transition-colors flex items-center gap-1">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 4h10M7 8h6M7 12h8"/></svg>
+                  Size Guide
+                </a>
+              </div>
             </div>
           )}
 

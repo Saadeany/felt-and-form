@@ -6,6 +6,7 @@ import { getProducts, getCategories } from "../api/products";
 import ProductCard from "../components/product/ProductCard";
 import QuickViewModal from "../components/product/QuickViewModal";
 import Loader from "../components/common/Loader";
+import useSEO from "../utils/useSEO";
 
 const CATEGORY_ICONS = {
   Men: "👔", Women: "👗", Hoodies: "🧥", "T-Shirts": "👕",
@@ -39,6 +40,10 @@ const ProductSection = ({ eyebrow, title, to, products, onQuickView }) => (
 );
 
 const HomePage = () => {
+  useSEO({
+    title: undefined,
+    description: "Felt & Form — heavyweight basics and considered silhouettes, designed in Cairo. Shop men's, women's and unisex clothing online.",
+  });
   const navigate = useNavigate();
   const [newArrivals, setNewArrivals] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);

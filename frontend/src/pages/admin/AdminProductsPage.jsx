@@ -227,15 +227,42 @@ const AdminProductsPage = () => {
                 ))}
               </div>
             </div>
-
-            <div>
-              <p className="eyebrow mb-2 text-charcoal/60">Sizes</p>
-              <div className="flex flex-wrap gap-2">
-                {sizes.map((s) => (
-                  <button key={s.id} type="button" onClick={() => toggleSize(s.id)} className={`border px-3 py-1 text-xs transition-colors ${form.sizes.find((fs) => fs.size_id === s.id) ? "border-ink bg-ink text-paper" : "border-ink/20 hover:border-ink"}`}>{s.name}</button>
-                ))}
-              </div>
+          <div>
+            <p className="eyebrow mb-2 text-charcoal/60">Sizes &amp; Stock</p>
+            <div className="flex flex-wrap gap-2 mb-3">
+              {sizes.map((s) => (
+                <button key={s.id} type="button" onClick={() => toggleSize(s.id)}
+                  className={`border px-3 py-1 text-xs transition-colors ${form.sizes.find((fs) => fs.size_id === s.id) ? "border-ink bg-ink text-paper" : "border-ink/20 hover:border-ink"}`}>
+                  {s.name}
+                </button>
+              ))}
             </div>
+            {form.sizes.length > 0 && (
+              <div className="space-y-2">
+                {form.sizes.map((fs) => {
+                  const sizeName = sizes.find((s) => s.id === fs.size_id)?.name;
+                  return (
+                    <div key={fs.size_id} className="flex items-center gap-3">
+                      <span className="w-16 text-xs text-charcoal/70">{sizeName}</span>
+                      <input
+                        type="number"
+                        min="0"
+                        value={fs.stock}
+                        onChange={(e) => setForm((f) => ({
+                          ...f,
+                          sizes: f.sizes.map((x) =>
+                            x.size_id === fs.size_id ? { ...x, stock: parseInt(e.target.value, 10) || 0 } : x
+                          ),
+                        }))}
+                        className="input-field text-xs py-1.5 w-24"
+                        placeholder="Stock"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
             <div>
               <p className="eyebrow mb-2 text-charcoal/60">Colors</p>
