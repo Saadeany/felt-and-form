@@ -58,6 +58,8 @@ needed because the app now sits behind nginx — see SECURITY_AUDIT.md).
    ```bash
    docker compose build
    docker compose up -d
+   5. Check their status
+      docker compose ps
    docker compose logs -f backend   # watch for "MySQL ... connected" and "API running"
    ```
 
@@ -137,3 +139,8 @@ needed because the app now sits behind nginx — see SECURITY_AUDIT.md).
 - **Updates**: `git pull && docker compose build && docker compose up -d`
 - **Uploaded images** live in the `backend_uploads` named volume — back this up too (`docker run --rm -v felt-and-form_backend_uploads:/data -v $(pwd):/backup alpine tar czf /backup/uploads-backup.tar.gz -C /data .`)
 - **Image updates**: periodically rebuild (`docker compose build --pull`) so `node:20-alpine`, `mysql:8.0`, and `nginx:1.27-alpine` pick up upstream security patches
+
+
+## cloudflare phone test
+**powershell**
+   cloudflared tunnel --url http://localhost:80

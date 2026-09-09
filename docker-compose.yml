@@ -74,9 +74,25 @@ services:
       # If this VPS is single-purpose and you want Docker to own 80/443
       # directly instead, see the Caddy-based alternative in DEPLOYMENT.md.
 
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - internal
+    depends_on:
+      - frontend  
 volumes:
   mysql_data:
   backend_uploads:
+  caddy_data:
+  caddy_config:
 
 networks:
   internal:
