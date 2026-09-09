@@ -31,6 +31,10 @@ ProductImage.belongsTo(Product, { foreignKey: "product_id" });
 // Product <-> Size (M2M)
 Product.belongsToMany(Size, { through: ProductSize, foreignKey: "product_id", otherKey: "size_id", as: "sizes" });
 Size.belongsToMany(Product, { through: ProductSize, foreignKey: "size_id", otherKey: "product_id" });
+ProductSize.belongsTo(Size, { foreignKey: "size_id" });
+ProductSize.belongsTo(Product, { foreignKey: "product_id" });
+Size.hasMany(ProductSize, { foreignKey: "size_id" });
+Product.hasMany(ProductSize, { foreignKey: "product_id" });
 
 // Product <-> Color (M2M)
 Product.belongsToMany(Color, { through: ProductColor, foreignKey: "product_id", otherKey: "color_id", as: "colors" });
