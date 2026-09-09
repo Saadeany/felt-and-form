@@ -1,4 +1,4 @@
-# Felt & Form — Full-Stack E-Commerce
+# Felt & Form — Full-Stack E-Commerce(V4)
 
 > Heavyweight basics and considered silhouettes, designed in Cairo.  
 > A production-ready clothing brand e-commerce platform built with **React + Vite**, **Node.js / Express**, and **MySQL**.
@@ -94,7 +94,6 @@ cd felt-and-form
 
 ```sql
 -- run this in the MySQL shell as root
-mysql -u root -p
 CREATE DATABASE felt_and_form CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER 'felt_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'felt_password_123';
 GRANT ALL PRIVILEGES ON felt_and_form.* TO 'felt_user'@'localhost';
