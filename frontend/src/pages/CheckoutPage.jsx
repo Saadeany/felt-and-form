@@ -14,6 +14,18 @@ const PAYMENT_METHODS = [
   { value: "vodafone_cash", label: "Vodafone Cash" },
   { value: "instapay", label: "InstaPay" },
 ];
+const Field = ({ label, name, type = "text", required = true, form, update }) => (
+  <div>
+    <label className="eyebrow mb-1 block">{label}</label>
+    <input
+      type={type}
+      required={required}
+      value={form[name]}
+      onChange={(e) => update(name, e.target.value)}
+      className="input-field"
+    />
+  </div>
+);
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -59,18 +71,6 @@ const CheckoutPage = () => {
     return null;
   }
 
-  const Field = ({ label, name, type = "text", required = true, form, update }) => (
-  <div>
-    <label className="eyebrow mb-1 block">{label}</label>
-    <input
-      type={type}
-      required={required}
-      value={form[name]}
-      onChange={(e) => update(name, e.target.value)}
-      className="input-field"
-    />
-  </div>
-);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
